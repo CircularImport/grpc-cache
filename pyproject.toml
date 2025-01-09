@@ -1,0 +1,91 @@
+[tool.poetry]
+name = "grpc-cache-pypi"
+version = "0.1.0"
+description = ""
+authors = ["artemprotaev <a.protaev@atomgroup.io>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+redis = {version = ">=5.0.0", extras = ["asyncio"]}
+grpcio-tools = "*"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.8.6"
+pre-commit = "^4.0.1"
+
+[tool.poetry.group.docs.dependencies]
+mkdocs = "^1.6.1"
+mkdocs-material = "^9.5.49"
+mkdocstrings = {extras = ["python"], version = "^0.27.0"}
+
+[tool.poetry.group.test.dependencies]
+pytest = {extras = ["asyncio"], version = "^8.3.4"}
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+show-fixes = true
+output-format = "concise"
+src = ["."]
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "W",
+    "F",
+    "B",
+    "UP",
+    "ASYNC",
+    "S",
+    "BLE",
+    "PIE",
+    "T20",
+    "C4",
+    "RET",
+    "COM",
+    "I",
+    "RUF200",
+]
+ignore = [
+    "E501",
+    "B008",
+    "W191",
+    "B904",
+    "COM812",
+    "S101",
+    "S104",
+    "BLE001",
+    "RET503",
+]
+fixable = ["ALL"]
+unfixable = ["B", "N"]
+
+[tool.ruff.lint.per-file-ignores]
+'__init__.py' = [
+    'F403',
+    'F405',
+]
+"tests/*" = ["S101", "D103", "D101", "D102"]
+"*pb2*.py" = ["I", "F401", "E402", "F541", "UP"]
+
+[tool.ruff.lint.isort]
+lines-between-types = 1
+lines-after-imports = 2
+
+[tool.ruff.lint.pyupgrade]
+keep-runtime-typing = true
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+docstring-code-format = true
+
+[tool.ruff.lint.mccabe]
+max-complexity = 3
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
