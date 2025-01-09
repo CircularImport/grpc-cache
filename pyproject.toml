@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "grpc-cache"
-version = "0.1.1"
-description = ""
+version = "0.1.2"
+description = "A utility for caching gRPC method calls"
 authors = ["artemprotaev <a.protaev@atomgroup.io>"]
 readme = "README.md"
 packages = [{include = "grpc_cache"}]
