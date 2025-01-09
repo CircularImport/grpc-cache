@@ -1,9 +1,12 @@
 [tool.poetry]
-name = "grpc-cache-pypi"
-version = "0.1.0"
+name = "grpc-cache"
+version = "0.1.1"
 description = ""
 authors = ["artemprotaev <a.protaev@atomgroup.io>"]
 readme = "README.md"
+packages = [{include = "grpc_cache"}]
+repository = "https://github.com/CircularImport/grpc-cache"
+documentation = "https://circularimport.github.io/grpc-cache/"
 
 [tool.poetry.dependencies]
 python = "^3.12"
