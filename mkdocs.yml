@@ -1,4 +1,6 @@
 site_name: gRPC Cache
+repo_url: https://github.com/CircularImport/grpc-cache
+repo_name: CircularImport/grpc-cache
 
 nav:
   - Getting started: index.md
