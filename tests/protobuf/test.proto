@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+message Request {
+  int32 a = 1;
+  int32 b = 2;
+}
+
+message Response {
+  int32 c = 1;
+}
+
+message Empty {}
+
+service Math {
+  rpc Sum (Request) returns (Response) {}
+  rpc Clear (Request) returns (Empty) {}
+}
