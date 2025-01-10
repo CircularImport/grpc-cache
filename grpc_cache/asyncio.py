@@ -120,7 +120,7 @@ class AsyncGRPCCache:
                 """
                 cache_key = ":".join([prefix, *args])
                 try:
-                    await self._backend.delete(key=cache_key)
+                    await self._backend.delete(pattern=cache_key)
                 except RedisError as e:
                     logger.warning(f"Redis is unavailable: {e}")
 

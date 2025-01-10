@@ -32,9 +32,10 @@ class AsyncRedisBackend(AsyncBackend):
         except Exception as e:
             raise BackendError from e
 
-    async def delete(self, key: str) -> None:
+    async def delete(self, pattern: str) -> None:
         try:
-            await self._redis.delete(key)
+            keys = await self._redis.keys(pattern=pattern)
+            await self._redis.delete(*keys)
         except RedisConnectionError as e:
             raise BackendUnavailableError from e
         except Exception as e:
@@ -61,9 +62,10 @@ class RedisBackend(SyncBackend):
         except Exception as e:
             raise BackendError from e
 
-    def delete(self, key: str) -> None:
+    def delete(self, pattern: str) -> None:
         try:
-            self._redis.delete(key)
+            keys = self._redis.keys(pattern=pattern)
+            self._redis.delete(*keys)
         except RedisConnectionError as e:
             raise BackendUnavailableError from e
         except Exception as e:

@@ -12,7 +12,7 @@ class SyncBackend(ABC):
         raise NotImplementedError()
 
     @abstractmethod
-    def delete(self, key: str) -> None:
+    def delete(self, pattern: str) -> None:
         raise NotImplementedError()
 
 
@@ -26,5 +26,5 @@ class AsyncBackend(ABC):
         raise NotImplementedError()
 
     @abstractmethod
-    async def delete(self, key: str) -> None:
+    async def delete(self, pattern: str) -> None:
         raise NotImplementedError()

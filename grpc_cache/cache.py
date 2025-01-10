@@ -119,7 +119,7 @@ class GRPCCache:
                 """
                 cache_key = ":".join([prefix, *[f"{v}" for v in args]])
                 try:
-                    self._backend.delete(key=cache_key)
+                    self._backend.delete(pattern=cache_key)
                 except RedisError as e:
                     logger.warning(f"Redis is unavailable: {e}")
 

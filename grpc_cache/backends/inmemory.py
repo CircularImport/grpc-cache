@@ -1,3 +1,5 @@
+import re
+
 from asyncio import Lock as AsyncLock
 from dataclasses import dataclass
 from datetime import UTC, datetime, timedelta
@@ -48,9 +50,12 @@ class AsyncInMemoryBackend(BaseInMemoryBackend, AsyncBackend):
         async with self._lock:
             return self._get(key)
 
-    async def delete(self, key: str) -> None:
+    async def delete(self, pattern: str) -> None:
+        pattern = pattern.replace("*", ".+")
         async with self._lock:
-            self._store.pop(key, None)
+            for key in self._store:
+                if re.fullmatch(pattern=pattern, string=key):
+                    self._store.pop(key)
 
 
 class InMemoryBackend(BaseInMemoryBackend, SyncBackend):
@@ -70,6 +75,9 @@ class InMemoryBackend(BaseInMemoryBackend, SyncBackend):
         with self._lock:
             return self._get(key)
 
-    def delete(self, key: str) -> None:
+    def delete(self, pattern: str) -> None:
+        pattern = pattern.replace("*", ".+")
         with self._lock:
-            self._store.pop(key, None)
+            for key in self._store:
+                if re.fullmatch(pattern=pattern, string=key):
+                    self._store.pop(key)
