@@ -6,6 +6,7 @@ nav:
   - Getting started: index.md
   - GRPCCache: cache.md
   - AsyncGRPCCache: asyncio.md
+  - Clear cache: clear.md
 
 theme:
   name: material
