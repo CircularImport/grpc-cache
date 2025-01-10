@@ -26,4 +26,5 @@ jobs:
           restore-keys: |
             mkdocs-material-
       - run: pip install mkdocs-material "mkdocstrings[python]"
+      - run: echo '' > .nojekyll
       - run: mkdocs gh-deploy --force
