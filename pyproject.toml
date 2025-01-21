@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "grpc-cache"
-version = "0.1.4"
+version = "0.1.5"
 description = "A utility for caching gRPC method calls"
 authors = ["CircularImport <circular.import@proton.me>"]
 readme = "README.md"

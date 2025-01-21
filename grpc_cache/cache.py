@@ -122,6 +122,8 @@ class GRPCCache:
                     self._backend.delete(pattern=cache_key)
                 except RedisError as e:
                     logger.warning(f"Redis is unavailable: {e}")
+                except Exception as e:
+                    logger.warning(f"Unexpected error: {e}")
 
             func.clear = clear_cache
 

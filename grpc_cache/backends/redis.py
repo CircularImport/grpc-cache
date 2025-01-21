@@ -35,7 +35,8 @@ class AsyncRedisBackend(AsyncBackend):
     async def delete(self, pattern: str) -> None:
         try:
             keys = await self._redis.keys(pattern=pattern)
-            await self._redis.delete(*keys)
+            if keys:
+                await self._redis.delete(*keys)
         except RedisConnectionError as e:
             raise BackendUnavailableError from e
         except Exception as e:
